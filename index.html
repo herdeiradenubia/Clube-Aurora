@@ -978,6 +978,7 @@
 </div>
 
 <script>
+// ==================== DADOS ====================
 let dados = {
     membros: [],
     livros: [],
@@ -991,6 +992,7 @@ let dados = {
 let usuarioLogado = null;
 let avatarSelecionado = '🌸';
 
+// ==================== INICIALIZAÇÃO ====================
 function init() {
     const saved = localStorage.getItem('dadosClubeAurora');
     if (saved) {
@@ -1023,19 +1025,51 @@ function salvarDados() {
     localStorage.setItem('dadosClubeAurora', JSON.stringify(dados));
 }
 
+// ==================== ATIVIDADES ====================
 function adicionarAtividade(texto) {
-    dados.atividades.unshift({
+    const novaAtividade = {
         id: Date.now(),
         texto: texto,
         data: new Date().toISOString()
-    });
+    };
+    dados.atividades.unshift(novaAtividade);
+    
     if (dados.atividades.length > 50) {
         dados.atividades = dados.atividades.slice(0, 50);
     }
+    
     salvarDados();
     carregarAtividades();
 }
 
+function carregarAtividades() {
+    const container = document.getElementById('ultimasAtividades');
+    const atividades = dados.atividades || [];
+    
+    if (atividades.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <span class="emoji">🎀</span>
+                <p>Nenhuma atividade ainda</p>
+            </div>
+        `;
+        return;
+    }
+    
+    let html = '';
+    for (let i = 0; i < Math.min(atividades.length, 30); i++) {
+        const a = atividades[i];
+        html += `
+            <div class="atividade-item">
+                <span class="atividade-texto">${a.texto}</span>
+                <span class="atividade-data">${formatarDataHora(a.data)}</span>
+            </div>
+        `;
+    }
+    container.innerHTML = html;
+}
+
+// ==================== AVATAR ====================
 function selecionarAvatar(element, emoji) {
     document.querySelectorAll('#avatarGrid button').forEach(b => b.classList.remove('selected'));
     element.classList.add('selected');
@@ -1055,16 +1089,17 @@ function mudarAvatar(element, emoji) {
     carregarPerfil();
 }
 
+// ==================== BACKUP ====================
 function exportarBackup() {
-    const dados = localStorage.getItem('dadosClubeAurora');
-    if (!dados) {
+    const dadosStr = localStorage.getItem('dadosClubeAurora');
+    if (!dadosStr) {
         document.getElementById('backupStatus').innerHTML = `
             <div class="alert alert-error">❌ Nenhum dado encontrado para exportar</div>
         `;
         return;
     }
     
-    const blob = new Blob([dados], {type: 'application/json'});
+    const blob = new Blob([dadosStr], {type: 'application/json'});
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -1106,6 +1141,7 @@ function importarBackup(event) {
     reader.readAsText(file);
 }
 
+// ==================== NAVEGAÇÃO ====================
 function mostrarPagina(pagina) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     const page = document.getElementById(`page-${pagina}`);
@@ -1126,6 +1162,7 @@ function mostrarPagina(pagina) {
     }
 }
 
+// ==================== AUTENTICAÇÃO ====================
 function login(event) {
     event.preventDefault();
     const email = document.getElementById('loginEmail').value;
@@ -1199,6 +1236,7 @@ function atualizarHeader() {
     }
 }
 
+// ==================== CARREGAR DADOS ====================
 function carregarDadosTela() {
     carregarEstatisticas();
     renderizarLivros();
@@ -1215,6 +1253,7 @@ function carregarEstatisticas() {
     document.getElementById('statEncontros').textContent = dados.encontros.length;
 }
 
+// ==================== LIVROS ====================
 function renderizarLivros() {
     const container = document.getElementById('listaLivros');
     const busca = document.getElementById('buscarLivro')?.value?.toLowerCase() || '';
@@ -1426,6 +1465,7 @@ function registrarLeitura(event) {
     alert('✅ Leitura registrada com sucesso!');
 }
 
+// ==================== ENCONTROS ====================
 function renderizarEncontros() {
     const hoje = new Date().toISOString().split('T')[0];
     const proximos = dados.encontros.filter(e => e.data >= hoje);
@@ -1554,6 +1594,7 @@ function confirmarEncontro(encontroId) {
     renderizarEncontros();
 }
 
+// ==================== SUGESTÕES ====================
 function sugerirLocal(event) {
     event.preventDefault();
     const local = document.getElementById('sugLocal').value;
@@ -1605,6 +1646,7 @@ function votarSugestao(sugestaoId) {
     renderizarEncontros();
 }
 
+// ==================== DESAFIOS ====================
 function renderizarDesafios() {
     const containerDiario = document.getElementById('desafioDiario');
     const desafiosDiarios = dados.desafios.filter(d => d.tipo === 'diario' && d.ativo !== false);
@@ -1699,6 +1741,7 @@ function excluirDesafio(desafioId) {
     alert('🗑️ Desafio excluído com sucesso!');
 }
 
+// ==================== PERFIL ====================
 function carregarPerfil() {
     if (!usuarioLogado) return;
     
@@ -1741,26 +1784,11 @@ function carregarPerfil() {
     }
 }
 
-function carregarAtividades() {
-    const container = document.getElementById('ultimasAtividades');
-    const atividades = dados.atividades || [];
-    
-    if (atividades.length === 0) {
-        container.innerHTML = `
-            <div class="empty-state">
-                <span class="emoji">🎀</span>
-                <p>Nenhuma atividade ainda</p>
-            </div>
-        `;
-        return;
-    }
-    
-    container.innerHTML = atividades.slice(0, 30).map(a => `
-        <div class="atividade-item">
-            <span class="atividade-texto">${a.texto}</span>
-            <span class="atividade-data">${formatarDataHora(a.data)}</span>
-        </div>
-    `).join('');
+// ==================== UTILITÁRIOS ====================
+function formatarData(data) {
+    if (!data) return 'Data não disponível';
+    const d = new Date(data + 'T00:00:00');
+    return d.toLocaleDateString('pt-BR');
 }
 
 function formatarDataHora(data) {
@@ -1777,12 +1805,7 @@ function fecharModal(id) {
     document.getElementById(id).classList.remove('active');
 }
 
-function formatarData(data) {
-    if (!data) return 'Data não disponível';
-    const d = new Date(data + 'T00:00:00');
-    return d.toLocaleDateString('pt-BR');
-}
-
+// ==================== INICIAR ====================
 init();
 
 document.addEventListener('keydown', (e) => {
