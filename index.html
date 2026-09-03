@@ -1,0 +1,1712 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 Clube Aurora</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fff5f7;
+            color: #4a2c3a;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f8a4b8 0%, #f7c5cc 50%, #fce4ec 100%);
+            color: #4a2c3a;
+            padding: 20px 30px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(248, 164, 184, 0.3);
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #4a2c3a;
+        }
+
+        .header h1 span {
+            color: #d6336c;
+        }
+
+        .header-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+        }
+
+        .avatar-display {
+            font-size: 32px;
+            margin-right: 8px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #d6336c;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #c2185b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(214, 51, 108, 0.4);
+        }
+
+        .btn-success {
+            background: #e91e63;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #c2185b;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .btn-secondary {
+            background: #fce4ec;
+            color: #d6336c;
+            border: 1px solid #f8a4b8;
+        }
+
+        .btn-secondary:hover {
+            background: #f8a4b8;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #d6336c;
+            color: #d6336c;
+        }
+
+        .btn-outline:hover {
+            background: #d6336c;
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 4px 12px;
+            font-size: 12px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(214, 51, 108, 0.08);
+            border: 1px solid #fce4ec;
+        }
+
+        .card h3 {
+            color: #4a2c3a;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 4px;
+            font-size: 14px;
+            color: #6b4c5a;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #f8d7e0;
+            border-radius: 6px;
+            font-size: 14px;
+            background: #fff5f7;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #d6336c;
+            background: white;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 60px;
+            font-family: inherit;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            padding: 10px 20px;
+            background: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #6b4c5a;
+            transition: all 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid #fce4ec;
+        }
+
+        .nav-tab:hover {
+            background: #fce4ec;
+            color: #d6336c;
+        }
+
+        .nav-tab.active {
+            background: #d6336c;
+            color: white;
+            border-color: #d6336c;
+        }
+
+        .auth-page {
+            max-width: 400px;
+            margin: 40px auto;
+        }
+
+        .auth-box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(214, 51, 108, 0.15);
+            border: 1px solid #fce4ec;
+        }
+
+        .auth-box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #4a2c3a;
+        }
+
+        .auth-box h2 .aurora {
+            color: #d6336c;
+        }
+
+        .auth-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #6b4c5a;
+        }
+
+        .auth-link a {
+            color: #d6336c;
+            text-decoration: none;
+        }
+
+        .auth-link a:hover {
+            text-decoration: underline;
+        }
+
+        .item-card {
+            padding: 12px;
+            background: #fff5f7;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border-left: 3px solid #d6336c;
+            transition: all 0.3s;
+        }
+
+        .item-card:hover {
+            background: #fce4ec;
+        }
+
+        .item-card .titulo {
+            font-weight: 600;
+            color: #4a2c3a;
+        }
+
+        .item-card .subtitulo {
+            color: #6b4c5a;
+            font-size: 14px;
+        }
+
+        .item-card .meta {
+            font-size: 13px;
+            color: #9b7a88;
+            display: flex;
+            gap: 12px;
+            margin-top: 4px;
+            flex-wrap: wrap;
+        }
+
+        .item-card .acoes {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .badge-success {
+            background: #fce4ec;
+            color: #d6336c;
+        }
+
+        .badge-info {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        .badge-danger {
+            background: #fbe9e7;
+            color: #bf360c;
+        }
+
+        .badge-rosa {
+            background: #fce4ec;
+            color: #d6336c;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 1px solid #fce4ec;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .modal-header h3 {
+            color: #4a2c3a;
+        }
+
+        .modal-close {
+            font-size: 24px;
+            cursor: pointer;
+            color: #9b7a88;
+            background: none;
+            border: none;
+        }
+
+        .modal-close:hover {
+            color: #4a2c3a;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 12px;
+            background: #fff5f7;
+            border-radius: 8px;
+            border: 1px solid #fce4ec;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #d6336c;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #6b4c5a;
+        }
+
+        .alert {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .alert-success {
+            background: #fce4ec;
+            color: #d6336c;
+            border: 1px solid #f8d7e0;
+        }
+
+        .alert-error {
+            background: #fbe9e7;
+            color: #bf360c;
+            border: 1px solid #ffccbc;
+        }
+
+        .alert-info {
+            background: #f3e5f5;
+            color: #7b1fa2;
+            border: 1px solid #e1bee7;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 30px 20px;
+            color: #9b7a88;
+        }
+
+        .empty-state .emoji {
+            font-size: 48px;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .avatar-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin: 8px 0;
+        }
+
+        .avatar-grid button {
+            font-size: 28px;
+            padding: 6px;
+            border: 2px solid #fce4ec;
+            border-radius: 50%;
+            cursor: pointer;
+            background: white;
+            transition: all 0.3s;
+            width: 100%;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar-grid button:hover {
+            transform: scale(1.1);
+            border-color: #d6336c;
+        }
+
+        .avatar-grid button.selected {
+            border-color: #d6336c;
+            background: #fce4ec;
+            box-shadow: 0 0 0 3px #f8a4b8;
+        }
+
+        .flex { display: flex; }
+        .flex-between { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .flex-gap { display: flex; gap: 8px; flex-wrap: wrap; }
+        .mt-12 { margin-top: 12px; }
+        .mb-12 { margin-bottom: 12px; }
+        .text-center { text-align: center; }
+        .hidden { display: none; }
+
+        @media (max-width: 600px) {
+            .header { flex-direction: column; text-align: center; }
+            .form-row { grid-template-columns: 1fr; }
+            .nav-tabs { justify-content: center; }
+            .nav-tab { font-size: 12px; padding: 8px 14px; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .avatar-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="app">
+    <div class="header">
+        <h1>🌸 Clube <span>Aurora</span></h1>
+        <div class="header-user" id="headerUser">
+            <span class="avatar-display" id="avatarDisplay">🌸</span>
+            <span id="userNameDisplay">Visitante</span>
+            <button class="btn btn-outline" id="btnLogin" onclick="mostrarPagina('login')">Entrar</button>
+            <button class="btn btn-outline" id="btnLogout" onclick="logout()" style="display:none;">Sair</button>
+        </div>
+    </div>
+
+    <div class="nav-tabs" id="navTabs" style="display:none;">
+        <button class="nav-tab active" onclick="mostrarPagina('dashboard')">📊 Início</button>
+        <button class="nav-tab" onclick="mostrarPagina('biblioteca')">📖 Biblioteca</button>
+        <button class="nav-tab" onclick="mostrarPagina('encontros')">📅 Encontros</button>
+        <button class="nav-tab" onclick="mostrarPagina('desafios')">🏆 Desafios</button>
+        <button class="nav-tab" onclick="mostrarPagina('perfil')">👤 Perfil</button>
+    </div>
+
+    <div class="page auth-page" id="page-login">
+        <div class="auth-box">
+            <h2>🌸 <span class="aurora">Clube Aurora</span></h2>
+            <div id="loginAlert"></div>
+            <form id="loginForm" onsubmit="login(event)">
+                <div class="form-group">
+                    <label>📧 Email</label>
+                    <input type="email" id="loginEmail" placeholder="seu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>🔒 Senha</label>
+                    <input type="password" id="loginSenha" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Entrar no Clube</button>
+            </form>
+            <div class="auth-link">
+                Não tem conta? <a href="#" onclick="mostrarPagina('registro')">Criar conta</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="page auth-page" id="page-registro">
+        <div class="auth-box">
+            <h2>🌸 Criar Conta</h2>
+            <div id="registroAlert"></div>
+            <form id="registroForm" onsubmit="registrar(event)">
+                <div class="form-group">
+                    <label>👩 Nome</label>
+                    <input type="text" id="regNome" placeholder="Seu nome" required>
+                </div>
+                <div class="form-group">
+                    <label>📧 Email</label>
+                    <input type="email" id="regEmail" placeholder="seu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>🔒 Senha</label>
+                    <input type="password" id="regSenha" placeholder="••••••••" required>
+                </div>
+                <div class="form-group">
+                    <label>🌸 Escolha seu avatar</label>
+                    <div class="avatar-grid" id="avatarGrid">
+                        <button type="button" class="selected" onclick="selecionarAvatar(this, '🌸')">🌸</button>
+                        <button type="button" onclick="selecionarAvatar(this, '🌺')">🌺</button>
+                        <button type="button" onclick="selecionarAvatar(this, '🌷')">🌷</button>
+                        <button type="button" onclick="selecionarAvatar(this, '🌹')">🌹</button>
+                        <button type="button" onclick="selecionarAvatar(this, '🌻')">🌻</button>
+                        <button type="button" onclick="selecionarAvatar(this, '🌼')">🌼</button>
+                        <button type="button" onclick="selecionarAvatar(this, '🌿')">🌿</button>
+                        <button type="button" onclick="selecionarAvatar(this, '🍀')">🍀</button>
+                        <button type="button" onclick="selecionarAvatar(this, '🎨')">🎨</button>
+                        <button type="button" onclick="selecionarAvatar(this, '✨')">✨</button>
+                        <button type="button" onclick="selecionarAvatar(this, '🦋')">🦋</button>
+                        <button type="button" onclick="selecionarAvatar(this, '🌙')">🌙</button>
+                        <button type="button" onclick="selecionarAvatar(this, '⭐')">⭐</button>
+                        <button type="button" onclick="selecionarAvatar(this, '🌈')">🌈</button>
+                        <button type="button" onclick="selecionarAvatar(this, '🎀')">🎀</button>
+                        <button type="button" onclick="selecionarAvatar(this, '💎')">💎</button>
+                        <button type="button" onclick="selecionarAvatar(this, '🦄')">🦄</button>
+                        <button type="button" onclick="selecionarAvatar(this, '🐱')">🐱</button>
+                        <button type="button" onclick="selecionarAvatar(this, '🐰')">🐰</button>
+                        <button type="button" onclick="selecionarAvatar(this, '🦊')">🦊</button>
+                    </div>
+                    <input type="hidden" id="regAvatar" value="🌸">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Criar conta</button>
+            </form>
+            <div class="auth-link">
+                Já tem conta? <a href="#" onclick="mostrarPagina('login')">Fazer login</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="page-dashboard">
+        <div class="card">
+            <h3>👋 Olá, <span id="welcomeName">Leitora</span>!</h3>
+            <p>Bem-vinda ao Clube Aurora! 🌸</p>
+        </div>
+
+        <div class="card">
+            <h3>📊 Estatísticas do Clube</h3>
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-item">
+                    <span class="stat-number" id="statLivros">0</span>
+                    <span class="stat-label">📚 Livros</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="statMembros">0</span>
+                    <span class="stat-label">👩 Membros</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="statLeituras">0</span>
+                    <span class="stat-label">📖 Leituras</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="statEncontros">0</span>
+                    <span class="stat-label">📅 Encontros</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📰 Últimas Atividades</h3>
+            <div id="ultimasAtividades">
+                <div class="empty-state">
+                    <span class="emoji">🌸</span>
+                    <p>Nenhuma atividade ainda</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="page-biblioteca">
+        <div class="card">
+            <div class="flex-between">
+                <h3>📖 Biblioteca do Clube</h3>
+                <button class="btn btn-primary" onclick="abrirModal('modalLivro')">➕ Adicionar</button>
+            </div>
+            
+            <div class="form-row" style="margin-top:12px;">
+                <input type="text" id="buscarLivro" placeholder="🔍 Buscar livro..." oninput="renderizarLivros()">
+                <select id="filtroStatus" onchange="renderizarLivros()">
+                    <option value="">Todos</option>
+                    <option value="concluido">✅ Concluídos</option>
+                    <option value="lendo">⏳ Lendo</option>
+                </select>
+            </div>
+            
+            <div id="listaLivros" style="margin-top:12px;">
+                <div class="empty-state">
+                    <span class="emoji">📚</span>
+                    <p>Nenhum livro cadastrado ainda</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="page-encontros">
+        <div class="card">
+            <div class="flex-between">
+                <h3>📅 Encontros</h3>
+                <button class="btn btn-primary" onclick="abrirModal('modalEncontro')">➕ Criar</button>
+            </div>
+            
+            <h4 style="margin-top:16px;">📌 Próximos</h4>
+            <div id="proximosEncontros">
+                <div class="empty-state">
+                    <span class="emoji">📅</span>
+                    <p>Nenhum encontro agendado</p>
+                </div>
+            </div>
+            
+            <h4 style="margin-top:16px;">📝 Sugestões</h4>
+            <div id="listaSugestoes">
+                <div class="empty-state">
+                    <span class="emoji">💡</span>
+                    <p>Nenhuma sugestão</p>
+                    <button class="btn btn-primary btn-sm" onclick="abrirModal('modalSugestao')">💡 Sugerir um livro</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="page-desafios">
+        <div class="card">
+            <div class="flex-between">
+                <h3>🏆 Desafios</h3>
+                <button class="btn btn-primary" onclick="abrirModal('modalDesafio')">➕ Criar</button>
+            </div>
+            
+            <h4 style="margin-top:16px;">🌅 Desafio Diário</h4>
+            <div id="desafioDiario">
+                <div class="empty-state">
+                    <span class="emoji">🌅</span>
+                    <p>Nenhum desafio diário ativo</p>
+                </div>
+            </div>
+            
+            <h4 style="margin-top:16px;">📅 Desafios Semanais</h4>
+            <div id="listaDesafios">
+                <div class="empty-state">
+                    <span class="emoji">🏆</span>
+                    <p>Nenhum desafio criado ainda</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="page-perfil">
+        <div class="card">
+            <div class="flex-between">
+                <h3>👤 Meu Perfil</h3>
+                <button class="btn btn-primary btn-sm" onclick="abrirModal('modalAvatar')">🌸 Mudar Avatar</button>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;margin-top:8px;">
+                <span style="font-size:48px;" id="perfilAvatar">🌸</span>
+                <div>
+                    <p><strong>Nome:</strong> <span id="perfilNome">-</span></p>
+                    <p><strong>Email:</strong> <span id="perfilEmail">-</span></p>
+                    <p><strong>Membro desde:</strong> <span id="perfilData">-</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h3>📊 Minhas Estatísticas</h3>
+            <div class="stats-grid" id="perfilStats">
+                <div class="stat-item">
+                    <span class="stat-number" id="pLivros">0</span>
+                    <span class="stat-label">📚 Lidos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="pNota">0.0</span>
+                    <span class="stat-label">⭐ Média</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="pDesafios">0</span>
+                    <span class="stat-label">🏆 Desafios</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>💾 Backup dos Dados</h3>
+            <p style="font-size:14px;color:#6b4c5a;margin-bottom:8px;">
+                Exporte seus dados para usar em outro computador ou dispositivo.
+            </p>
+            <div class="flex-gap">
+                <button class="btn btn-primary btn-sm" onclick="exportarBackup()">📥 Exportar Backup</button>
+                <button class="btn btn-secondary btn-sm" onclick="document.getElementById('importFile').click()">📤 Importar Backup</button>
+                <input type="file" id="importFile" accept=".json" style="display:none" onchange="importarBackup(event)">
+            </div>
+            <div id="backupStatus" style="margin-top:8px;"></div>
+        </div>
+        
+        <div class="card">
+            <h3>📖 Minhas Leituras</h3>
+            <div id="minhasLeituras">
+                <div class="empty-state">
+                    <span class="emoji">📖</span>
+                    <p>Nenhuma leitura registrada</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modalLivro">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📚 Adicionar Livro</h3>
+                <button class="modal-close" onclick="fecharModal('modalLivro')">&times;</button>
+            </div>
+            <form id="formLivro" onsubmit="adicionarLivro(event)">
+                <div class="form-group">
+                    <label>Título *</label>
+                    <input type="text" id="livroTitulo" required>
+                </div>
+                <div class="form-group">
+                    <label>Autora *</label>
+                    <input type="text" id="livroAutor" required>
+                </div>
+                <div class="form-group">
+                    <label>Gênero</label>
+                    <select id="livroGenero">
+                        <option>Fantasia</option>
+                        <option>Ficção Científica</option>
+                        <option>Romance</option>
+                        <option>Mistério</option>
+                        <option>Biografia</option>
+                        <option>Clássico</option>
+                        <option>Poesia</option>
+                        <option>Outro</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Adicionar Livro</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="modalLeitura">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📖 Registrar Leitura</h3>
+                <button class="modal-close" onclick="fecharModal('modalLeitura')">&times;</button>
+            </div>
+            <form id="formLeitura" onsubmit="registrarLeitura(event)">
+                <input type="hidden" id="leituraLivroId">
+                <div class="form-group">
+                    <label>Status</label>
+                    <select id="leituraStatus">
+                        <option value="concluido">✅ Concluído</option>
+                        <option value="lendo">⏳ Lendo</option>
+                        <option value="desistiu">❌ Desistiu</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Nota (0-5)</label>
+                    <input type="number" id="leituraNota" min="0" max="5" step="0.5">
+                </div>
+                <div class="form-group">
+                    <label>Comentário</label>
+                    <textarea id="leituraComentario" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success" style="width:100%;">Registrar Leitura</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="modalEncontro">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📅 Criar Encontro</h3>
+                <button class="modal-close" onclick="fecharModal('modalEncontro')">&times;</button>
+            </div>
+            <form id="formEncontro" onsubmit="criarEncontro(event)">
+                <div class="form-group">
+                    <label>Título *</label>
+                    <input type="text" id="encTitulo" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Data *</label>
+                        <input type="date" id="encData" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Hora</label>
+                        <input type="time" id="encHora">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Local</label>
+                    <input type="text" id="encLocal">
+                </div>
+                <div class="form-group">
+                    <label>Pauta</label>
+                    <textarea id="encPauta" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Criar Encontro</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="modalDesafio">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🏆 Criar Desafio</h3>
+                <button class="modal-close" onclick="fecharModal('modalDesafio')">&times;</button>
+            </div>
+            <form id="formDesafio" onsubmit="criarDesafio(event)">
+                <div class="form-group">
+                    <label>Título *</label>
+                    <input type="text" id="desTitulo" required placeholder="Ex: Leitura Diária">
+                </div>
+                <div class="form-group">
+                    <label>Descrição</label>
+                    <textarea id="desDescricao" rows="3" placeholder="Descreva o desafio..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Tipo</label>
+                    <select id="desTipo">
+                        <option value="diario">🌅 Diário</option>
+                        <option value="semanal">📅 Semanal</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Criar Desafio</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="modalSugestao">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>💡 Sugerir Livro</h3>
+                <button class="modal-close" onclick="fecharModal('modalSugestao')">&times;</button>
+            </div>
+            <form id="formSugestao" onsubmit="sugerirLivro(event)">
+                <div class="form-group">
+                    <label>Livro *</label>
+                    <input type="text" id="sugLivro" required>
+                </div>
+                <div class="form-group">
+                    <label>Autora *</label>
+                    <input type="text" id="sugAutor" required>
+                </div>
+                <div class="form-group">
+                    <label>Motivo</label>
+                    <textarea id="sugMotivo" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Sugerir</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="modalDetalhes">
+        <div class="modal-content" style="max-width:600px;">
+            <div class="modal-header">
+                <h3 id="detalhesTitulo">Detalhes</h3>
+                <button class="modal-close" onclick="fecharModal('modalDetalhes')">&times;</button>
+            </div>
+            <div id="detalhesConteudo"></div>
+        </div>
+    </div>
+
+    <div class="modal" id="modalAvatar">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🌸 Escolher Avatar</h3>
+                <button class="modal-close" onclick="fecharModal('modalAvatar')">&times;</button>
+            </div>
+            <div class="avatar-grid" id="avatarModalGrid">
+                <button type="button" onclick="mudarAvatar(this, '🌸')">🌸</button>
+                <button type="button" onclick="mudarAvatar(this, '🌺')">🌺</button>
+                <button type="button" onclick="mudarAvatar(this, '🌷')">🌷</button>
+                <button type="button" onclick="mudarAvatar(this, '🌹')">🌹</button>
+                <button type="button" onclick="mudarAvatar(this, '🌻')">🌻</button>
+                <button type="button" onclick="mudarAvatar(this, '🌼')">🌼</button>
+                <button type="button" onclick="mudarAvatar(this, '🌿')">🌿</button>
+                <button type="button" onclick="mudarAvatar(this, '🍀')">🍀</button>
+                <button type="button" onclick="mudarAvatar(this, '🎨')">🎨</button>
+                <button type="button" onclick="mudarAvatar(this, '✨')">✨</button>
+                <button type="button" onclick="mudarAvatar(this, '🦋')">🦋</button>
+                <button type="button" onclick="mudarAvatar(this, '🌙')">🌙</button>
+                <button type="button" onclick="mudarAvatar(this, '⭐')">⭐</button>
+                <button type="button" onclick="mudarAvatar(this, '🌈')">🌈</button>
+                <button type="button" onclick="mudarAvatar(this, '🎀')">🎀</button>
+                <button type="button" onclick="mudarAvatar(this, '💎')">💎</button>
+                <button type="button" onclick="mudarAvatar(this, '🦄')">🦄</button>
+                <button type="button" onclick="mudarAvatar(this, '🐱')">🐱</button>
+                <button type="button" onclick="mudarAvatar(this, '🐰')">🐰</button>
+                <button type="button" onclick="mudarAvatar(this, '🦊')">🦊</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let dados = {
+    membros: [],
+    livros: [],
+    leituras: [],
+    encontros: [],
+    sugestoes: [],
+    desafios: []
+};
+
+let usuarioLogado = null;
+let avatarSelecionado = '🌸';
+
+function init() {
+    const saved = localStorage.getItem('dadosClubeAurora');
+    if (saved) {
+        dados = JSON.parse(saved);
+    } else {
+        dados = {
+            membros: [],
+            livros: [],
+            leituras: [],
+            encontros: [],
+            sugestoes: [],
+            desafios: []
+        };
+        salvarDados();
+    }
+    
+    const savedUser = localStorage.getItem('usuarioLogado');
+    if (savedUser) {
+        usuarioLogado = JSON.parse(savedUser);
+        atualizarHeader();
+        mostrarPagina('dashboard');
+        carregarDadosTela();
+    } else {
+        mostrarPagina('login');
+    }
+}
+
+function salvarDados() {
+    localStorage.setItem('dadosClubeAurora', JSON.stringify(dados));
+}
+
+function selecionarAvatar(element, emoji) {
+    document.querySelectorAll('#avatarGrid button').forEach(b => b.classList.remove('selected'));
+    element.classList.add('selected');
+    avatarSelecionado = emoji;
+    document.getElementById('regAvatar').value = emoji;
+}
+
+function mudarAvatar(element, emoji) {
+    if (!usuarioLogado) return;
+    usuarioLogado.avatar = emoji;
+    const membro = dados.membros.find(m => m.id === usuarioLogado.id);
+    if (membro) membro.avatar = emoji;
+    salvarDados();
+    localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
+    atualizarHeader();
+    fecharModal('modalAvatar');
+    carregarPerfil();
+}
+
+function exportarBackup() {
+    const dados = localStorage.getItem('dadosClubeAurora');
+    if (!dados) {
+        document.getElementById('backupStatus').innerHTML = `
+            <div class="alert alert-error">❌ Nenhum dado encontrado para exportar</div>
+        `;
+        return;
+    }
+    
+    const blob = new Blob([dados], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `backup_aurora_${new Date().toISOString().split('T')[0]}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    
+    document.getElementById('backupStatus').innerHTML = `
+        <div class="alert alert-success">✅ Backup exportado com sucesso!</div>
+    `;
+}
+
+function importarBackup(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const dadosImportados = JSON.parse(e.target.result);
+            
+            if (!dadosImportados.membros || !dadosImportados.livros) {
+                throw new Error('Arquivo inválido');
+            }
+            
+            if (confirm('Isso vai sobrescrever todos os dados atuais. Continuar?')) {
+                localStorage.setItem('dadosClubeAurora', JSON.stringify(dadosImportados));
+                document.getElementById('backupStatus').innerHTML = `
+                    <div class="alert alert-success">✅ Dados importados com sucesso! A página vai recarregar.</div>
+                `;
+                setTimeout(() => location.reload(), 2000);
+            }
+        } catch (error) {
+            document.getElementById('backupStatus').innerHTML = `
+                <div class="alert alert-error">❌ Erro ao importar: Arquivo inválido</div>
+            `;
+        }
+    };
+    reader.readAsText(file);
+}
+
+function mostrarPagina(pagina) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const page = document.getElementById(`page-${pagina}`);
+    if (page) page.classList.add('active');
+    
+    if (pagina === 'login' || pagina === 'registro') {
+        document.getElementById('navTabs').style.display = 'none';
+    } else {
+        document.getElementById('navTabs').style.display = 'flex';
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.classList.toggle('active', tab.textContent.toLowerCase().includes(pagina) || 
+                (pagina === 'dashboard' && tab.textContent.includes('Início')));
+        });
+    }
+    
+    if (usuarioLogado && pagina !== 'login' && pagina !== 'registro') {
+        carregarDadosTela();
+    }
+}
+
+function login(event) {
+    event.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const senha = document.getElementById('loginSenha').value;
+    
+    const membro = dados.membros.find(m => m.email === email && m.senha === senha);
+    if (membro) {
+        usuarioLogado = membro;
+        localStorage.setItem('usuarioLogado', JSON.stringify(membro));
+        atualizarHeader();
+        mostrarPagina('dashboard');
+        carregarDadosTela();
+        document.getElementById('loginAlert').innerHTML = '';
+    } else {
+        document.getElementById('loginAlert').innerHTML = '<div class="alert alert-error">Email ou senha inválidos</div>';
+    }
+}
+
+function registrar(event) {
+    event.preventDefault();
+    const nome = document.getElementById('regNome').value;
+    const email = document.getElementById('regEmail').value;
+    const senha = document.getElementById('regSenha').value;
+    const avatar = document.getElementById('regAvatar').value;
+    
+    if (dados.membros.find(m => m.email === email)) {
+        document.getElementById('registroAlert').innerHTML = '<div class="alert alert-error">Email já cadastrado</div>';
+        return;
+    }
+    
+    const novoMembro = {
+        id: Date.now(),
+        nome,
+        email,
+        senha,
+        avatar: avatar || '🌸',
+        entrou_em: new Date().toISOString().split('T')[0]
+    };
+    
+    dados.membros.push(novoMembro);
+    salvarDados();
+    
+    usuarioLogado = novoMembro;
+    localStorage.setItem('usuarioLogado', JSON.stringify(novoMembro));
+    atualizarHeader();
+    mostrarPagina('dashboard');
+    carregarDadosTela();
+    document.getElementById('registroAlert').innerHTML = '';
+}
+
+function logout() {
+    usuarioLogado = null;
+    localStorage.removeItem('usuarioLogado');
+    atualizarHeader();
+    mostrarPagina('login');
+}
+
+function atualizarHeader() {
+    if (usuarioLogado) {
+        document.getElementById('avatarDisplay').textContent = usuarioLogado.avatar || '🌸';
+        document.getElementById('userNameDisplay').textContent = `👩 ${usuarioLogado.nome}`;
+        document.getElementById('btnLogin').style.display = 'none';
+        document.getElementById('btnLogout').style.display = 'inline-block';
+        document.getElementById('welcomeName').textContent = usuarioLogado.nome;
+    } else {
+        document.getElementById('avatarDisplay').textContent = '🌸';
+        document.getElementById('userNameDisplay').textContent = 'Visitante';
+        document.getElementById('btnLogin').style.display = 'inline-block';
+        document.getElementById('btnLogout').style.display = 'none';
+    }
+}
+
+function carregarDadosTela() {
+    carregarEstatisticas();
+    renderizarLivros();
+    renderizarEncontros();
+    renderizarDesafios();
+    carregarPerfil();
+    carregarAtividades();
+}
+
+function carregarEstatisticas() {
+    document.getElementById('statLivros').textContent = dados.livros.length;
+    document.getElementById('statMembros').textContent = dados.membros.length;
+    document.getElementById('statLeituras').textContent = dados.leituras.length;
+    document.getElementById('statEncontros').textContent = dados.encontros.length;
+}
+
+function renderizarLivros() {
+    const container = document.getElementById('listaLivros');
+    const busca = document.getElementById('buscarLivro')?.value?.toLowerCase() || '';
+    const filtro = document.getElementById('filtroStatus')?.value || '';
+    
+    let livros = dados.livros;
+    
+    if (busca) {
+        livros = livros.filter(l => 
+            l.titulo.toLowerCase().includes(busca) || 
+            l.autor.toLowerCase().includes(busca)
+        );
+    }
+    
+    if (filtro && usuarioLogado) {
+        const leiturasFiltro = dados.leituras.filter(l => l.membro_id === usuarioLogado.id && l.status === filtro);
+        const idsLivros = leiturasFiltro.map(l => l.livro_id);
+        livros = livros.filter(l => idsLivros.includes(l.id));
+    }
+    
+    if (livros.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <span class="emoji">📚</span>
+                <p>Nenhum livro encontrado</p>
+            </div>
+        `;
+        return;
+    }
+    
+    container.innerHTML = livros.map(livro => {
+        const leituras = dados.leituras.filter(l => l.livro_id === livro.id);
+        const concluidos = leituras.filter(l => l.status === 'concluido');
+        const media = concluidos.length > 0 ? (concluidos.reduce((s, l) => s + (l.nota || 0), 0) / concluidos.length).toFixed(1) : 0;
+        const minhaLeitura = leituras.find(l => l.membro_id === usuarioLogado?.id);
+        const membro = dados.membros.find(m => m.id === livro.adicionado_por);
+        
+        return `
+            <div class="item-card">
+                <div class="flex-between">
+                    <span>
+                        <span class="titulo">${livro.titulo}</span>
+                        <span class="subtitulo"> - ${livro.autor}</span>
+                    </span>
+                    <span>⭐ ${media}</span>
+                </div>
+                <div class="meta">
+                    <span>📂 ${livro.genero}</span>
+                    <span>📖 ${leituras.length} leitoras</span>
+                    <span>✅ ${concluidos.length} concluíram</span>
+                    <span>👩 Adicionado por: ${membro?.nome || 'Alguém'}</span>
+                    ${minhaLeitura ? `<span class="badge ${minhaLeitura.status === 'concluido' ? 'badge-success' : minhaLeitura.status === 'lendo' ? 'badge-info' : 'badge-danger'}">${minhaLeitura.status}</span>` : ''}
+                </div>
+                <div class="acoes">
+                    <button class="btn btn-primary btn-sm" onclick="verDetalhes(${livro.id})">📖 Ver</button>
+                    <button class="btn btn-success btn-sm" onclick="abrirModalLeitura(${livro.id})">${minhaLeitura ? '📝 Atualizar' : '📖 Registrar'}</button>
+                    <button class="btn btn-danger btn-sm" onclick="excluirLivro(${livro.id})">🗑️ Excluir</button>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function adicionarLivro(event) {
+    event.preventDefault();
+    const titulo = document.getElementById('livroTitulo').value;
+    const autor = document.getElementById('livroAutor').value;
+    const genero = document.getElementById('livroGenero').value;
+    
+    if (dados.livros.find(l => l.titulo === titulo && l.autor === autor)) {
+        alert('Este livro já está cadastrado!');
+        return;
+    }
+    
+    dados.livros.push({
+        id: Date.now(),
+        titulo,
+        autor,
+        genero,
+        adicionado_por: usuarioLogado.id
+    });
+    
+    salvarDados();
+    fecharModal('modalLivro');
+    document.getElementById('formLivro').reset();
+    renderizarLivros();
+    carregarEstatisticas();
+    alert('✅ Livro adicionado com sucesso!');
+}
+
+function excluirLivro(livroId) {
+    if (!confirm('Tem certeza que deseja excluir este livro?')) return;
+    dados.livros = dados.livros.filter(l => l.id !== livroId);
+    dados.leituras = dados.leituras.filter(l => l.livro_id !== livroId);
+    salvarDados();
+    renderizarLivros();
+    carregarEstatisticas();
+    alert('🗑️ Livro excluído com sucesso!');
+}
+
+function verDetalhes(livroId) {
+    const livro = dados.livros.find(l => l.id === livroId);
+    if (!livro) return;
+    
+    const leituras = dados.leituras.filter(l => l.livro_id === livroId);
+    const membros = dados.membros;
+    const membro = membros.find(m => m.id === livro.adicionado_por);
+    
+    let html = `
+        <h4>${livro.titulo}</h4>
+        <p><strong>Autora:</strong> ${livro.autor}</p>
+        <p><strong>Gênero:</strong> ${livro.genero}</p>
+        <p><strong>Adicionado por:</strong> ${membro?.nome || 'Alguém'}</p>
+        <p><strong>Total de Leitoras:</strong> ${leituras.length}</p>
+        <hr style="margin:12px 0;">
+        <h5>👩 Leitoras</h5>
+    `;
+    
+    if (leituras.length === 0) {
+        html += '<p>Ninguém registrou leitura ainda</p>';
+    } else {
+        leituras.forEach(l => {
+            const membra = membros.find(m => m.id === l.membro_id);
+            html += `
+                <div style="padding:6px 0; border-bottom:1px solid #fce4ec; font-size:14px;">
+                    <strong>${membra?.nome || 'Usuária'}</strong>
+                    <span class="badge ${l.status === 'concluido' ? 'badge-success' : l.status === 'lendo' ? 'badge-info' : 'badge-danger'}">${l.status}</span>
+                    ${l.nota ? `⭐ ${l.nota}` : ''}
+                    ${l.comentario ? `<br><span style="color:#6b4c5a;font-style:italic;">"${l.comentario}"</span>` : ''}
+                </div>
+            `;
+        });
+    }
+    
+    html += `
+        <hr style="margin:12px 0;">
+        <button class="btn btn-primary" onclick="fecharModal('modalDetalhes');abrirModalLeitura(${livroId})">
+            ${leituras.find(l => l.membro_id === usuarioLogado?.id) ? '📝 Atualizar Leitura' : '📖 Registrar Leitura'}
+        </button>
+        <button class="btn btn-danger" onclick="fecharModal('modalDetalhes');excluirLivro(${livroId})">🗑️ Excluir Livro</button>
+    `;
+    
+    document.getElementById('detalhesTitulo').textContent = `📖 ${livro.titulo}`;
+    document.getElementById('detalhesConteudo').innerHTML = html;
+    abrirModal('modalDetalhes');
+}
+
+function abrirModalLeitura(livroId) {
+    document.getElementById('leituraLivroId').value = livroId;
+    const leitura = dados.leituras.find(l => l.livro_id === livroId && l.membro_id === usuarioLogado?.id);
+    if (leitura) {
+        document.getElementById('leituraStatus').value = leitura.status;
+        document.getElementById('leituraNota').value = leitura.nota || '';
+        document.getElementById('leituraComentario').value = leitura.comentario || '';
+    } else {
+        document.getElementById('leituraStatus').value = 'lendo';
+        document.getElementById('leituraNota').value = '';
+        document.getElementById('leituraComentario').value = '';
+    }
+    abrirModal('modalLeitura');
+}
+
+function registrarLeitura(event) {
+    event.preventDefault();
+    const livroId = parseInt(document.getElementById('leituraLivroId').value);
+    const status = document.getElementById('leituraStatus').value;
+    const nota = parseFloat(document.getElementById('leituraNota').value) || null;
+    const comentario = document.getElementById('leituraComentario').value;
+    
+    const existing = dados.leituras.find(l => l.livro_id === livroId && l.membro_id === usuarioLogado.id);
+    
+    if (existing) {
+        existing.status = status;
+        existing.nota = nota;
+        existing.comentario = comentario;
+    } else {
+        dados.leituras.push({
+            id: Date.now(),
+            livro_id: livroId,
+            membro_id: usuarioLogado.id,
+            status,
+            nota,
+            comentario,
+            data: new Date().toISOString().split('T')[0]
+        });
+    }
+    
+    salvarDados();
+    fecharModal('modalLeitura');
+    renderizarLivros();
+    carregarPerfil();
+    alert('✅ Leitura registrada com sucesso!');
+}
+
+function renderizarEncontros() {
+    const hoje = new Date().toISOString().split('T')[0];
+    const proximos = dados.encontros.filter(e => e.data >= hoje);
+    
+    const containerProx = document.getElementById('proximosEncontros');
+    if (proximos.length === 0) {
+        containerProx.innerHTML = `
+            <div class="empty-state">
+                <span class="emoji">📅</span>
+                <p>Nenhum encontro agendado</p>
+            </div>
+        `;
+    } else {
+        containerProx.innerHTML = proximos.map(e => {
+            const confirmado = e.confirmados?.includes(usuarioLogado?.id);
+            const membro = dados.membros.find(m => m.id === e.criado_por);
+            return `
+                <div class="item-card">
+                    <div class="flex-between">
+                        <span class="titulo">📅 ${formatarData(e.data)} ${e.hora ? `- ${e.hora}` : ''}</span>
+                        <span>👥 ${e.confirmados?.length || 0} confirmadas</span>
+                    </div>
+                    <div><strong>${e.titulo}</strong></div>
+                    <div class="subtitulo">📍 ${e.local || 'Local não definido'}</div>
+                    ${e.pauta ? `<div style="font-size:14px;color:#6b4c5a;">📋 ${e.pauta}</div>` : ''}
+                    <div style="font-size:13px;color:#9b7a88;">👩 Criado por: ${membro?.nome || 'Alguém'}</div>
+                    <div class="acoes">
+                        <button class="btn ${confirmado ? 'btn-success' : 'btn-primary'} btn-sm" onclick="confirmarEncontro(${e.id})">
+                            ${confirmado ? '✅ Confirmada' : '✅ Confirmar'}
+                        </button>
+                        <button class="btn btn-danger btn-sm" onclick="excluirEncontro(${e.id})">🗑️</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+    
+    const containerSug = document.getElementById('listaSugestoes');
+    if (dados.sugestoes.length === 0) {
+        containerSug.innerHTML = `
+            <div class="empty-state">
+                <span class="emoji">💡</span>
+                <p>Nenhuma sugestão</p>
+                <button class="btn btn-primary btn-sm" onclick="abrirModal('modalSugestao')">💡 Sugerir um livro</button>
+            </div>
+        `;
+    } else {
+        containerSug.innerHTML = dados.sugestoes.map(s => {
+            const jaVotei = s.votos?.includes(usuarioLogado?.id);
+            const membro = dados.membros.find(m => m.id === s.membro_id);
+            return `
+                <div class="item-card">
+                    <div class="flex-between">
+                        <span><strong>📚 ${s.livro}</strong> - ${s.autor}</span>
+                        <span>👍 ${s.votos?.length || 0} votos</span>
+                    </div>
+                    <div class="subtitulo">Sugerido por: ${membro?.nome || 'Alguém'}</div>
+                    ${s.motivo ? `<div style="font-size:13px;color:#6b4c5a;">💬 ${s.motivo}</div>` : ''}
+                    <div class="acoes">
+                        <button class="btn ${jaVotei ? 'btn-success' : 'btn-primary'} btn-sm" onclick="votarSugestao(${s.id})">
+                            ${jaVotei ? '✅ Votou' : '👍 Votar'}
+                        </button>
+                        <button class="btn btn-danger btn-sm" onclick="excluirSugestao(${s.id})">🗑️</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+}
+
+function criarEncontro(event) {
+    event.preventDefault();
+    dados.encontros.push({
+        id: Date.now(),
+        titulo: document.getElementById('encTitulo').value,
+        data: document.getElementById('encData').value,
+        hora: document.getElementById('encHora').value,
+        local: document.getElementById('encLocal').value,
+        pauta: document.getElementById('encPauta').value,
+        confirmados: [],
+        criado_por: usuarioLogado.id
+    });
+    salvarDados();
+    fecharModal('modalEncontro');
+    document.getElementById('formEncontro').reset();
+    renderizarEncontros();
+    carregarEstatisticas();
+    alert('✅ Encontro criado com sucesso!');
+}
+
+function excluirEncontro(encontroId) {
+    if (!confirm('Tem certeza que deseja excluir este encontro?')) return;
+    dados.encontros = dados.encontros.filter(e => e.id !== encontroId);
+    salvarDados();
+    renderizarEncontros();
+    alert('🗑️ Encontro excluído com sucesso!');
+}
+
+function confirmarEncontro(encontroId) {
+    const encontro = dados.encontros.find(e => e.id === encontroId);
+    if (!encontro) return;
+    
+    if (!encontro.confirmados) encontro.confirmados = [];
+    const index = encontro.confirmados.indexOf(usuarioLogado.id);
+    
+    if (index > -1) {
+        encontro.confirmados.splice(index, 1);
+    } else {
+        encontro.confirmados.push(usuarioLogado.id);
+    }
+    salvarDados();
+    renderizarEncontros();
+}
+
+function sugerirLivro(event) {
+    event.preventDefault();
+    dados.sugestoes.push({
+        id: Date.now(),
+        membro_id: usuarioLogado.id,
+        livro: document.getElementById('sugLivro').value,
+        autor: document.getElementById('sugAutor').value,
+        motivo: document.getElementById('sugMotivo').value,
+        votos: []
+    });
+    salvarDados();
+    fecharModal('modalSugestao');
+    document.getElementById('formSugestao').reset();
+    renderizarEncontros();
+    alert('💡 Livro sugerido com sucesso!');
+}
+
+function excluirSugestao(sugestaoId) {
+    if (!confirm('Tem certeza que deseja excluir esta sugestão?')) return;
+    dados.sugestoes = dados.sugestoes.filter(s => s.id !== sugestaoId);
+    salvarDados();
+    renderizarEncontros();
+    alert('🗑️ Sugestão excluída com sucesso!');
+}
+
+function votarSugestao(sugestaoId) {
+    const sugestao = dados.sugestoes.find(s => s.id === sugestaoId);
+    if (!sugestao) return;
+    
+    if (!sugestao.votos) sugestao.votos = [];
+    const index = sugestao.votos.indexOf(usuarioLogado.id);
+    
+    if (index > -1) {
+        sugestao.votos.splice(index, 1);
+    } else {
+        sugestao.votos.push(usuarioLogado.id);
+    }
+    salvarDados();
+    renderizarEncontros();
+}
+
+function renderizarDesafios() {
+    const containerDiario = document.getElementById('desafioDiario');
+    const desafiosDiarios = dados.desafios.filter(d => d.tipo === 'diario' && d.ativo !== false);
+    
+    if (desafiosDiarios.length === 0) {
+        containerDiario.innerHTML = `
+            <div class="empty-state">
+                <span class="emoji">🌅</span>
+                <p>Nenhum desafio diário ativo</p>
+            </div>
+        `;
+    } else {
+        containerDiario.innerHTML = desafiosDiarios.map(d => {
+            const membro = dados.membros.find(m => m.id === d.criado_por);
+            return `
+                <div class="item-card">
+                    <div class="flex-between">
+                        <span class="titulo">🌅 ${d.titulo}</span>
+                        <span class="badge badge-rosa">🔥 Diário</span>
+                    </div>
+                    ${d.descricao ? `<div class="subtitulo">${d.descricao}</div>` : ''}
+                    <div style="font-size:13px;color:#9b7a88;">👩 Criado por: ${membro?.nome || 'Alguém'}</div>
+                    <div class="acoes">
+                        <button class="btn btn-danger btn-sm" onclick="excluirDesafio(${d.id})">🗑️</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+    
+    const containerSemanal = document.getElementById('listaDesafios');
+    const desafiosSemanais = dados.desafios.filter(d => d.tipo === 'semanal' && d.ativo !== false);
+    
+    if (desafiosSemanais.length === 0) {
+        containerSemanal.innerHTML = `
+            <div class="empty-state">
+                <span class="emoji">🏆</span>
+                <p>Nenhum desafio semanal criado ainda</p>
+            </div>
+        `;
+    } else {
+        containerSemanal.innerHTML = desafiosSemanais.map(d => {
+            const membro = dados.membros.find(m => m.id === d.criado_por);
+            return `
+                <div class="item-card">
+                    <div class="flex-between">
+                        <span class="titulo">🏆 ${d.titulo}</span>
+                        <span class="badge badge-info">📅 Semanal</span>
+                    </div>
+                    ${d.descricao ? `<div class="subtitulo">${d.descricao}</div>` : ''}
+                    <div style="font-size:13px;color:#9b7a88;">👩 Criado por: ${membro?.nome || 'Alguém'}</div>
+                    <div class="acoes">
+                        <button class="btn btn-danger btn-sm" onclick="excluirDesafio(${d.id})">🗑️</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+}
+
+function criarDesafio(event) {
+    event.preventDefault();
+    dados.desafios.push({
+        id: Date.now(),
+        titulo: document.getElementById('desTitulo').value,
+        descricao: document.getElementById('desDescricao').value,
+        tipo: document.getElementById('desTipo').value,
+        ativo: true,
+        criado_por: usuarioLogado.id
+    });
+    salvarDados();
+    fecharModal('modalDesafio');
+    document.getElementById('formDesafio').reset();
+    renderizarDesafios();
+    alert('🏆 Desafio criado com sucesso!');
+}
+
+function excluirDesafio(desafioId) {
+    if (!confirm('Tem certeza que deseja excluir este desafio?')) return;
+    dados.desafios = dados.desafios.filter(d => d.id !== desafioId);
+    salvarDados();
+    renderizarDesafios();
+    alert('🗑️ Desafio excluído com sucesso!');
+}
+
+function carregarPerfil() {
+    if (!usuarioLogado) return;
+    
+    document.getElementById('perfilAvatar').textContent = usuarioLogado.avatar || '🌸';
+    document.getElementById('perfilNome').textContent = usuarioLogado.nome;
+    document.getElementById('perfilEmail').textContent = usuarioLogado.email;
+    document.getElementById('perfilData').textContent = formatarData(usuarioLogado.entrou_em);
+    
+    const minhasLeituras = dados.leituras.filter(l => l.membro_id === usuarioLogado.id);
+    const concluidos = minhasLeituras.filter(l => l.status === 'concluido');
+    const notas = concluidos.map(l => l.nota).filter(n => n !== null && n !== undefined);
+    const media = notas.length > 0 ? (notas.reduce((a, b) => a + b, 0) / notas.length).toFixed(1) : 0;
+    
+    document.getElementById('pLivros').textContent = concluidos.length;
+    document.getElementById('pNota').textContent = media;
+    document.getElementById('pDesafios').textContent = dados.desafios.filter(d => d.criado_por === usuarioLogado.id).length;
+    
+    const container = document.getElementById('minhasLeituras');
+    if (minhasLeituras.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <span class="emoji">📖</span>
+                <p>Nenhuma leitura registrada</p>
+            </div>
+        `;
+    } else {
+        container.innerHTML = minhasLeituras.map(l => {
+            const livro = dados.livros.find(b => b.id === l.livro_id);
+            return `
+                <div style="padding:8px 0;border-bottom:1px solid #fce4ec;">
+                    <div class="flex-between">
+                        <span><strong>${livro?.titulo || 'Livro removido'}</strong> - ${livro?.autor || ''}</span>
+                        <span class="badge ${l.status === 'concluido' ? 'badge-success' : l.status === 'lendo' ? 'badge-info' : 'badge-danger'}">${l.status}</span>
+                    </div>
+                    ${l.nota ? `<span>⭐ ${l.nota}</span>` : ''}
+                    ${l.comentario ? `<div style="font-size:13px;color:#6b4c5a;font-style:italic;">"${l.comentario}"</div>` : ''}
+                </div>
+            `;
+        }).join('');
+    }
+}
+
+function carregarAtividades() {
+    const container = document.getElementById('ultimasAtividades');
+    const atividades = [...dados.leituras].slice(-5).reverse();
+    
+    if (atividades.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <span class="emoji">🌸</span>
+                <p>Nenhuma atividade recente</p>
+            </div>
+        `;
+        return;
+    }
+    
+    container.innerHTML = atividades.map(l => {
+        const livro = dados.livros.find(b => b.id === l.livro_id);
+        const membro = dados.membros.find(m => m.id === l.membro_id);
+        return `
+            <div style="padding:8px 0;border-bottom:1px solid #fce4ec;font-size:14px;">
+                <strong>${membro?.nome || 'Alguém'}</strong> 
+                ${l.status === 'concluido' ? 'terminou' : l.status === 'lendo' ? 'começou' : 'desistiu de'} 
+                <strong>"${livro?.titulo || 'livro'}"</strong>
+                ${l.nota ? `⭐ ${l.nota}` : ''}
+                ${l.comentario ? `<br><span style="color:#6b4c5a;font-style:italic;">💬 "${l.comentario}"</span>` : ''}
+            </div>
+        `;
+    }).join('');
+}
+
+function abrirModal(id) {
+    document.getElementById(id).classList.add('active');
+}
+
+function fecharModal(id) {
+    document.getElementById(id).classList.remove('active');
+}
+
+function formatarData(data) {
+    if (!data) return 'Data não disponível';
+    const d = new Date(data + 'T00:00:00');
+    return d.toLocaleDateString('pt-BR');
+}
+
+init();
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.modal.active').forEach(m => m.classList.remove('active'));
+    }
+});
+
+document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('active');
+    });
+});
+</script>
+
+</body>
+</html>
