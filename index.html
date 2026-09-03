@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌸 Clube Aurora</title>
+    <title>🎀 Clube Aurora</title>
     <style>
         * {
             margin: 0;
@@ -501,7 +501,7 @@
 
 <div class="container" id="app">
     <div class="header">
-        <h1>🌸 Clube <span>Aurora</span></h1>
+        <h1>🎀 Clube <span>Aurora</span></h1>
         <div class="header-user" id="headerUser">
             <span class="avatar-display" id="avatarDisplay">🌸</span>
             <span id="userNameDisplay">Visitante</span>
@@ -520,7 +520,7 @@
 
     <div class="page auth-page" id="page-login">
         <div class="auth-box">
-            <h2>🌸 <span class="aurora">Clube Aurora</span></h2>
+            <h2>🎀 <span class="aurora">Clube Aurora</span></h2>
             <div id="loginAlert"></div>
             <form id="loginForm" onsubmit="login(event)">
                 <div class="form-group">
@@ -541,7 +541,7 @@
 
     <div class="page auth-page" id="page-registro">
         <div class="auth-box">
-            <h2>🌸 Criar Conta</h2>
+            <h2>🎀 Criar Conta</h2>
             <div id="registroAlert"></div>
             <form id="registroForm" onsubmit="registrar(event)">
                 <div class="form-group">
@@ -557,7 +557,7 @@
                     <input type="password" id="regSenha" placeholder="••••••••" required>
                 </div>
                 <div class="form-group">
-                    <label>🌸 Escolha seu avatar</label>
+                    <label>🎀 Escolha seu avatar</label>
                     <div class="avatar-grid" id="avatarGrid">
                         <button type="button" class="selected" onclick="selecionarAvatar(this, '🌸')">🌸</button>
                         <button type="button" onclick="selecionarAvatar(this, '🌺')">🌺</button>
@@ -593,7 +593,7 @@
     <div class="page" id="page-dashboard">
         <div class="card">
             <h3>👋 Olá, <span id="welcomeName">Leitora</span>!</h3>
-            <p>Bem-vinda ao Clube Aurora! 🌸</p>
+            <p>Bem-vinda ao Clube Aurora! 🎀</p>
         </div>
 
         <div class="card">
@@ -622,7 +622,7 @@
             <h3>📰 Últimas Atividades</h3>
             <div id="ultimasAtividades">
                 <div class="empty-state">
-                    <span class="emoji">🌸</span>
+                    <span class="emoji">🎀</span>
                     <p>Nenhuma atividade ainda</p>
                 </div>
             </div>
@@ -669,12 +669,12 @@
                 </div>
             </div>
             
-            <h4 style="margin-top:16px;">📝 Sugestões</h4>
+            <h4 style="margin-top:16px;">📍 Sugestões de Locais</h4>
             <div id="listaSugestoes">
                 <div class="empty-state">
-                    <span class="emoji">💡</span>
-                    <p>Nenhuma sugestão</p>
-                    <button class="btn btn-primary btn-sm" onclick="abrirModal('modalSugestao')">💡 Sugerir um livro</button>
+                    <span class="emoji">📍</span>
+                    <p>Nenhuma sugestão de local</p>
+                    <button class="btn btn-primary btn-sm" onclick="abrirModal('modalSugestao')">📍 Sugerir um local</button>
                 </div>
             </div>
         </div>
@@ -709,7 +709,7 @@
         <div class="card">
             <div class="flex-between">
                 <h3>👤 Meu Perfil</h3>
-                <button class="btn btn-primary btn-sm" onclick="abrirModal('modalAvatar')">🌸 Mudar Avatar</button>
+                <button class="btn btn-primary btn-sm" onclick="abrirModal('modalAvatar')">🎀 Mudar Avatar</button>
             </div>
             <div style="display:flex;align-items:center;gap:16px;margin-top:8px;">
                 <span style="font-size:48px;" id="perfilAvatar">🌸</span>
@@ -889,23 +889,23 @@
     <div class="modal" id="modalSugestao">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>💡 Sugerir Livro</h3>
+                <h3>📍 Sugerir Local para Encontro</h3>
                 <button class="modal-close" onclick="fecharModal('modalSugestao')">&times;</button>
             </div>
-            <form id="formSugestao" onsubmit="sugerirLivro(event)">
+            <form id="formSugestao" onsubmit="sugerirLocal(event)">
                 <div class="form-group">
-                    <label>Livro *</label>
-                    <input type="text" id="sugLivro" required>
+                    <label>Nome do Local *</label>
+                    <input type="text" id="sugLocal" required placeholder="Ex: Biblioteca Municipal">
                 </div>
                 <div class="form-group">
-                    <label>Autora *</label>
-                    <input type="text" id="sugAutor" required>
+                    <label>Endereço</label>
+                    <input type="text" id="sugEndereco" placeholder="Rua, número, bairro...">
                 </div>
                 <div class="form-group">
-                    <label>Motivo</label>
-                    <textarea id="sugMotivo" rows="3"></textarea>
+                    <label>Motivo da sugestão</label>
+                    <textarea id="sugMotivo" rows="3" placeholder="Por que esse local é bom para o encontro?"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width:100%;">Sugerir</button>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Sugerir Local</button>
             </form>
         </div>
     </div>
@@ -923,7 +923,7 @@
     <div class="modal" id="modalAvatar">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>🌸 Escolher Avatar</h3>
+                <h3>🎀 Escolher Avatar</h3>
                 <button class="modal-close" onclick="fecharModal('modalAvatar')">&times;</button>
             </div>
             <div class="avatar-grid" id="avatarModalGrid">
@@ -959,7 +959,8 @@ let dados = {
     leituras: [],
     encontros: [],
     sugestoes: [],
-    desafios: []
+    desafios: [],
+    atividades: []
 };
 
 let usuarioLogado = null;
@@ -976,7 +977,8 @@ function init() {
             leituras: [],
             encontros: [],
             sugestoes: [],
-            desafios: []
+            desafios: [],
+            atividades: []
         };
         salvarDados();
     }
@@ -994,6 +996,18 @@ function init() {
 
 function salvarDados() {
     localStorage.setItem('dadosClubeAurora', JSON.stringify(dados));
+}
+
+function adicionarAtividade(texto) {
+    dados.atividades.unshift({
+        id: Date.now(),
+        texto: texto,
+        data: new Date().toISOString()
+    });
+    if (dados.atividades.length > 50) {
+        dados.atividades = dados.atividades.slice(0, 50);
+    }
+    salvarDados();
 }
 
 function selecionarAvatar(element, emoji) {
@@ -1134,6 +1148,7 @@ function registrar(event) {
     mostrarPagina('dashboard');
     carregarDadosTela();
     document.getElementById('registroAlert').innerHTML = '';
+    adicionarAtividade(`🎀 ${novoMembro.nome} entrou para o Clube Aurora!`);
 }
 
 function logout() {
@@ -1151,7 +1166,7 @@ function atualizarHeader() {
         document.getElementById('btnLogout').style.display = 'inline-block';
         document.getElementById('welcomeName').textContent = usuarioLogado.nome;
     } else {
-        document.getElementById('avatarDisplay').textContent = '🌸';
+        document.getElementById('avatarDisplay').textContent = '🎀';
         document.getElementById('userNameDisplay').textContent = 'Visitante';
         document.getElementById('btnLogin').style.display = 'inline-block';
         document.getElementById('btnLogout').style.display = 'none';
@@ -1261,16 +1276,21 @@ function adicionarLivro(event) {
     document.getElementById('formLivro').reset();
     renderizarLivros();
     carregarEstatisticas();
+    adicionarAtividade(`📚 ${usuarioLogado.nome} adicionou o livro "${titulo}" à biblioteca`);
     alert('✅ Livro adicionado com sucesso!');
 }
 
 function excluirLivro(livroId) {
     if (!confirm('Tem certeza que deseja excluir este livro?')) return;
+    const livro = dados.livros.find(l => l.id === livroId);
     dados.livros = dados.livros.filter(l => l.id !== livroId);
     dados.leituras = dados.leituras.filter(l => l.livro_id !== livroId);
     salvarDados();
     renderizarLivros();
     carregarEstatisticas();
+    if (livro) {
+        adicionarAtividade(`🗑️ ${usuarioLogado.nome} excluiu o livro "${livro.titulo}"`);
+    }
     alert('🗑️ Livro excluído com sucesso!');
 }
 
@@ -1342,6 +1362,7 @@ function registrarLeitura(event) {
     const status = document.getElementById('leituraStatus').value;
     const nota = parseFloat(document.getElementById('leituraNota').value) || null;
     const comentario = document.getElementById('leituraComentario').value;
+    const livro = dados.livros.find(l => l.id === livroId);
     
     const existing = dados.leituras.find(l => l.livro_id === livroId && l.membro_id === usuarioLogado.id);
     
@@ -1365,6 +1386,16 @@ function registrarLeitura(event) {
     fecharModal('modalLeitura');
     renderizarLivros();
     carregarPerfil();
+    
+    let mensagem = '';
+    if (status === 'concluido') {
+        mensagem = `📖 ${usuarioLogado.nome} terminou de ler "${livro?.titulo || 'um livro'}"${nota ? ` e deu nota ${nota}⭐` : ''}`;
+    } else if (status === 'lendo') {
+        mensagem = `📖 ${usuarioLogado.nome} começou a ler "${livro?.titulo || 'um livro'}"`;
+    } else {
+        mensagem = `📖 ${usuarioLogado.nome} desistiu de ler "${livro?.titulo || 'um livro'}"`;
+    }
+    adicionarAtividade(mensagem);
     alert('✅ Leitura registrada com sucesso!');
 }
 
@@ -1409,9 +1440,9 @@ function renderizarEncontros() {
     if (dados.sugestoes.length === 0) {
         containerSug.innerHTML = `
             <div class="empty-state">
-                <span class="emoji">💡</span>
-                <p>Nenhuma sugestão</p>
-                <button class="btn btn-primary btn-sm" onclick="abrirModal('modalSugestao')">💡 Sugerir um livro</button>
+                <span class="emoji">📍</span>
+                <p>Nenhuma sugestão de local</p>
+                <button class="btn btn-primary btn-sm" onclick="abrirModal('modalSugestao')">📍 Sugerir um local</button>
             </div>
         `;
     } else {
@@ -1421,9 +1452,10 @@ function renderizarEncontros() {
             return `
                 <div class="item-card">
                     <div class="flex-between">
-                        <span><strong>📚 ${s.livro}</strong> - ${s.autor}</span>
+                        <span><strong>📍 ${s.local}</strong></span>
                         <span>👍 ${s.votos?.length || 0} votos</span>
                     </div>
+                    ${s.endereco ? `<div class="subtitulo">📌 ${s.endereco}</div>` : ''}
                     <div class="subtitulo">Sugerido por: ${membro?.nome || 'Alguém'}</div>
                     ${s.motivo ? `<div style="font-size:13px;color:#6b4c5a;">💬 ${s.motivo}</div>` : ''}
                     <div class="acoes">
@@ -1440,13 +1472,19 @@ function renderizarEncontros() {
 
 function criarEncontro(event) {
     event.preventDefault();
+    const titulo = document.getElementById('encTitulo').value;
+    const data = document.getElementById('encData').value;
+    const hora = document.getElementById('encHora').value;
+    const local = document.getElementById('encLocal').value;
+    const pauta = document.getElementById('encPauta').value;
+    
     dados.encontros.push({
         id: Date.now(),
-        titulo: document.getElementById('encTitulo').value,
-        data: document.getElementById('encData').value,
-        hora: document.getElementById('encHora').value,
-        local: document.getElementById('encLocal').value,
-        pauta: document.getElementById('encPauta').value,
+        titulo,
+        data,
+        hora,
+        local,
+        pauta,
         confirmados: [],
         criado_por: usuarioLogado.id
     });
@@ -1455,14 +1493,19 @@ function criarEncontro(event) {
     document.getElementById('formEncontro').reset();
     renderizarEncontros();
     carregarEstatisticas();
+    adicionarAtividade(`📅 ${usuarioLogado.nome} criou o encontro "${titulo}" para ${formatarData(data)}`);
     alert('✅ Encontro criado com sucesso!');
 }
 
 function excluirEncontro(encontroId) {
     if (!confirm('Tem certeza que deseja excluir este encontro?')) return;
+    const encontro = dados.encontros.find(e => e.id === encontroId);
     dados.encontros = dados.encontros.filter(e => e.id !== encontroId);
     salvarDados();
     renderizarEncontros();
+    if (encontro) {
+        adicionarAtividade(`🗑️ ${usuarioLogado.nome} excluiu o encontro "${encontro.titulo}"`);
+    }
     alert('🗑️ Encontro excluído com sucesso!');
 }
 
@@ -1475,20 +1518,22 @@ function confirmarEncontro(encontroId) {
     
     if (index > -1) {
         encontro.confirmados.splice(index, 1);
+        adicionarAtividade(`❌ ${usuarioLogado.nome} cancelou a confirmação para o encontro "${encontro.titulo}"`);
     } else {
         encontro.confirmados.push(usuarioLogado.id);
+        adicionarAtividade(`✅ ${usuarioLogado.nome} confirmou presença no encontro "${encontro.titulo}"`);
     }
     salvarDados();
     renderizarEncontros();
 }
 
-function sugerirLivro(event) {
+function sugerirLocal(event) {
     event.preventDefault();
     dados.sugestoes.push({
         id: Date.now(),
         membro_id: usuarioLogado.id,
-        livro: document.getElementById('sugLivro').value,
-        autor: document.getElementById('sugAutor').value,
+        local: document.getElementById('sugLocal').value,
+        endereco: document.getElementById('sugEndereco').value,
         motivo: document.getElementById('sugMotivo').value,
         votos: []
     });
@@ -1496,14 +1541,19 @@ function sugerirLivro(event) {
     fecharModal('modalSugestao');
     document.getElementById('formSugestao').reset();
     renderizarEncontros();
-    alert('💡 Livro sugerido com sucesso!');
+    adicionarAtividade(`📍 ${usuarioLogado.nome} sugeriu um novo local para encontro: "${document.getElementById('sugLocal').value}"`);
+    alert('📍 Local sugerido com sucesso!');
 }
 
 function excluirSugestao(sugestaoId) {
     if (!confirm('Tem certeza que deseja excluir esta sugestão?')) return;
+    const sugestao = dados.sugestoes.find(s => s.id === sugestaoId);
     dados.sugestoes = dados.sugestoes.filter(s => s.id !== sugestaoId);
     salvarDados();
     renderizarEncontros();
+    if (sugestao) {
+        adicionarAtividade(`🗑️ ${usuarioLogado.nome} excluiu a sugestão de local "${sugestao.local}"`);
+    }
     alert('🗑️ Sugestão excluída com sucesso!');
 }
 
@@ -1518,6 +1568,7 @@ function votarSugestao(sugestaoId) {
         sugestao.votos.splice(index, 1);
     } else {
         sugestao.votos.push(usuarioLogado.id);
+        adicionarAtividade(`👍 ${usuarioLogado.nome} votou no local "${sugestao.local}" para o encontro`);
     }
     salvarDados();
     renderizarEncontros();
@@ -1585,11 +1636,15 @@ function renderizarDesafios() {
 
 function criarDesafio(event) {
     event.preventDefault();
+    const titulo = document.getElementById('desTitulo').value;
+    const descricao = document.getElementById('desDescricao').value;
+    const tipo = document.getElementById('desTipo').value;
+    
     dados.desafios.push({
         id: Date.now(),
-        titulo: document.getElementById('desTitulo').value,
-        descricao: document.getElementById('desDescricao').value,
-        tipo: document.getElementById('desTipo').value,
+        titulo,
+        descricao,
+        tipo,
         ativo: true,
         criado_por: usuarioLogado.id
     });
@@ -1597,14 +1652,19 @@ function criarDesafio(event) {
     fecharModal('modalDesafio');
     document.getElementById('formDesafio').reset();
     renderizarDesafios();
+    adicionarAtividade(`🏆 ${usuarioLogado.nome} criou o desafio "${titulo}"`);
     alert('🏆 Desafio criado com sucesso!');
 }
 
 function excluirDesafio(desafioId) {
     if (!confirm('Tem certeza que deseja excluir este desafio?')) return;
+    const desafio = dados.desafios.find(d => d.id === desafioId);
     dados.desafios = dados.desafios.filter(d => d.id !== desafioId);
     salvarDados();
     renderizarDesafios();
+    if (desafio) {
+        adicionarAtividade(`🗑️ ${usuarioLogado.nome} excluiu o desafio "${desafio.titulo}"`);
+    }
     alert('🗑️ Desafio excluído com sucesso!');
 }
 
@@ -1652,31 +1712,30 @@ function carregarPerfil() {
 
 function carregarAtividades() {
     const container = document.getElementById('ultimasAtividades');
-    const atividades = [...dados.leituras].slice(-5).reverse();
+    const atividades = dados.atividades || [];
     
     if (atividades.length === 0) {
         container.innerHTML = `
             <div class="empty-state">
-                <span class="emoji">🌸</span>
-                <p>Nenhuma atividade recente</p>
+                <span class="emoji">🎀</span>
+                <p>Nenhuma atividade ainda</p>
             </div>
         `;
         return;
     }
     
-    container.innerHTML = atividades.map(l => {
-        const livro = dados.livros.find(b => b.id === l.livro_id);
-        const membro = dados.membros.find(m => m.id === l.membro_id);
-        return `
-            <div style="padding:8px 0;border-bottom:1px solid #fce4ec;font-size:14px;">
-                <strong>${membro?.nome || 'Alguém'}</strong> 
-                ${l.status === 'concluido' ? 'terminou' : l.status === 'lendo' ? 'começou' : 'desistiu de'} 
-                <strong>"${livro?.titulo || 'livro'}"</strong>
-                ${l.nota ? `⭐ ${l.nota}` : ''}
-                ${l.comentario ? `<br><span style="color:#6b4c5a;font-style:italic;">💬 "${l.comentario}"</span>` : ''}
-            </div>
-        `;
-    }).join('');
+    container.innerHTML = atividades.slice(0, 20).map(a => `
+        <div style="padding:8px 0;border-bottom:1px solid #fce4ec;font-size:14px;">
+            ${a.texto}
+            <span style="color:#9b7a88;font-size:12px;margin-left:8px;">${formatarDataHora(a.data)}</span>
+        </div>
+    `).join('');
+}
+
+function formatarDataHora(data) {
+    if (!data) return '';
+    const d = new Date(data);
+    return d.toLocaleDateString('pt-BR') + ' ' + d.toLocaleTimeString('pt-BR', {hour: '2-digit', minute: '2-digit'});
 }
 
 function abrirModal(id) {
